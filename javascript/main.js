@@ -114,9 +114,18 @@ var resumeCss = `
   margin-bottom: 0;
 }
 `
-writeCode('',content, container, () => {
+let range = document.getElementById("speed");
+var speed = 1000 / range.value;
+! function changeSpeed() {
+  range.onchange = function () {
+    speed = 1000 / this.value;
+    console.log(speed)
+  };
+}.call();
+
+writeCode('', content, container, () => {
   appendResume(markDown, () => {
-    writeCode(content,resumeCss, container)
+    writeCode(content, resumeCss, container)
   })
 });
 
@@ -127,33 +136,51 @@ function appendResume(markdown, fn) {
   resumeEditor.id = 'resume';
   document.body.appendChild(resumeEditor);
   let m = 0;
-  let id = setInterval(() => {
-    m++;
-    x = markdown.substring(0, m)
-    resumeEditor.innerHTML = x;
-    if (m >= markdown.length) {
-      window.clearInterval(id);
-      document.getElementById('resume').innerHTML =
-        marked(markdown);
-      fn && fn.call();
-    }
-  }, 0);
+  ! function setTime2() {
+
+    setTimeout(() => {
+      m++;
+      x = markdown.substring(0, m)
+      resumeEditor.innerHTML = x;
+      if (m < markdown.length) {
+        setTime2();
+      } else {
+        document.getElementById('resume').innerHTML =
+          marked(markdown);
+        fn && fn.call();
+      }
+    }, speed);
+  }.call();
+  // let id = setInterval(() => {
+  //   m++;
+  //   x = markdown.substring(0, m)
+  //   resumeEditor.innerHTML = x;
+  //   if (m >= markdown.length) {
+  //     window.clearInterval(id);
+  //     document.getElementById('resume').innerHTML =
+  //       marked(markdown);
+  //     fn && fn.call();
+  //   }
+  // }, speed);
 }
 
-function writeCode(preCode,codeString, tagContainer, fn) {
+function writeCode(preCode, codeString, tagContainer, fn) {
   let n = 0;
-  let id = setInterval(() => {
-    n++;
-    tagContainer.innerHTML = preCode || '';
-    styleTag.innerHTML = styleTag.innerHTML || '';
-    let x = preCode+ codeString.substring(0, n);
-    tagContainer.innerHTML =  x;
-    tagContainer.innerHTML = Prism.highlight(x, Prism.languages.css, 'css');
-    styleTag.innerHTML +=  codeString.substring(n-1, n);
-    tagContainer.scrollTop = tagContainer.scrollHeight;
-    if (n >= codeString.length) {
-      window.clearInterval(id);
-      fn && fn.call();
-    }
-  }, 0)
+  ! function setTime() {
+    setTimeout(() => {
+      n++;
+      tagContainer.innerHTML = preCode || '';
+      styleTag.innerHTML = styleTag.innerHTML || '';
+      let x = preCode + codeString.substring(0, n);
+      tagContainer.innerHTML = x;
+      tagContainer.innerHTML = Prism.highlight(x, Prism.languages.css, 'css');
+      styleTag.innerHTML += codeString.substring(n - 1, n);
+      tagContainer.scrollTop = tagContainer.scrollHeight;
+      if (n < codeString.length) {
+        setTime();
+      } else {
+        fn && fn.call();
+      }
+    }, speed)
+  }.call();
 }

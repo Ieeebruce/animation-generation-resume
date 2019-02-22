@@ -4,3 +4,10 @@
 .token.function {
     color: rgb(196, 184, 184)
 }
+.speed{
+    position: absolute;
+    left:30%;
+    top:85vh;
+    height: 20px;
+    width: 50px;
+}

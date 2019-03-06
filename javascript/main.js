@@ -54,39 +54,48 @@ html{
 }`
 var markDown = `# 个人简历
 ## 联系方式
-* 手机：155********
-* E-mail：lei*****@gmail.com
-* 微信：l***
+* 手机：15510921745
+* E-mail：ieeebruce@foxmail.com
+* 微信：lht1011828
 
 ## 个人信息
-* 雷**/男/1991
-* 本科/河北工业大学通信工程
-* 期望职位：前端工程师
-* 期望薪资：8k
+* 雷洪涛 / 男/ 1991
+* 本科 /河北工业大学通信工程
+* 期望职位：初级前端工程师
 
 ## 工作学习经历
-* 2018-至今 自学前端中
-* 2014-2018 **城市轨道交通
-* 2010-2014 大学
+* 2018.9-至今 自学前端中
+* 2014-2018 城市轨道交通有限公司运营分公司
+* 2010-2014 河北工业大学
 
 ## 个人技能
-* vue
-* html5
-* css3
-* JavaScript
+* HTML5 & CSS3：能独立制作精美网页，掌握动画、过渡效果等技术，像素级还原设计稿，追求审美。
+* JavaScript：掌握原型、this、闭包、AJAX、JSONP等概念，部分了解ES6。
+* Vue：初步了解Vue的组件，会一点使用Karma+Mocah的单元测试
+* HTTP：了解HTTP协议及性能优化
+* 基本npm/git的使用
 
 ## 作品
-### 小小画板
-* 源码：
-* 预览：
-
+* Keyboard导航
+源码：https://github.com/Ieeebruce/Keyboard-nav
+预览：https://ieeebruce.github.io/Keyboard-nav/index.html
+描述：该项目使用原生JavaScript、CSS3实现。能够鼠标点击或者键盘导航到对应的页面。可以自定义导航网址。两种主题。
+* 动态简历
+源码：https://github.com/Ieeebruce/animation-generation-resume
+预览：https://ieeebruce.github.io/animation-generation-resume/
+描述：使用了一个prism的库实现了代码高亮。主要思路就是利用setTimeout函数将代码追加到页面中。
 `
 var resumeCss = `
 /*给简历加点样式*/
 /*来点背景色*/
 #resume {
   background: linear-gradient(to left, #F8CDDA, #1D2B64);
-  color: white
+  color: white;
+  width: 48vw;
+}
+#resume a{
+  color:white;
+  text-decoration:none
 }
 /*标题居中*/
 #resume h1 {
@@ -151,17 +160,6 @@ function appendResume(markdown, fn) {
       }
     }, speed);
   }.call();
-  // let id = setInterval(() => {
-  //   m++;
-  //   x = markdown.substring(0, m)
-  //   resumeEditor.innerHTML = x;
-  //   if (m >= markdown.length) {
-  //     window.clearInterval(id);
-  //     document.getElementById('resume').innerHTML =
-  //       marked(markdown);
-  //     fn && fn.call();
-  //   }
-  // }, speed);
 }
 
 function writeCode(preCode, codeString, tagContainer, fn) {

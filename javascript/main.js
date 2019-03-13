@@ -71,7 +71,7 @@ var markDown = `# 个人简历
 ## 个人技能
 * HTML5 & CSS3：能独立制作精美网页，掌握动画、过渡效果等技术，像素级还原设计稿，追求审美。
 * JavaScript：掌握原型、this、闭包、AJAX、JSONP等概念，部分了解ES6。
-* Vue：初步了解Vue的组件，会一点使用Karma+Mocah的单元测试
+* Vue：初步了解Vue的组件，会一点使用Karma+Mocha的单元测试
 * HTTP：了解HTTP协议及性能优化
 * 基本npm/git的使用
 
